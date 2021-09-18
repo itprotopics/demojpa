@@ -64,6 +64,7 @@ public class CourseRepositoryTest {
 
     }
 
+    @Test
     void testPlayWithEntityManager() {
 
         courseRepository.playWithEntityManager();

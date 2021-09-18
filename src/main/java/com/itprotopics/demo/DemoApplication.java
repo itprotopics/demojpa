@@ -27,12 +27,7 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Course course = courseRepository.findById(10001L);
-		
-		logger.info("Course 10001 {}", course);
-		//courseRepository.deleteById(10001L);
-
-		
+		courseRepository.playWithEntityManager();
 	}
 
 }
