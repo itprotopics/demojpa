@@ -1,0 +1,26 @@
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    properties:
+      hibernate:
+        generated_statistics: true
+        format_sql: true
+    show-sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        stat: debug
+    root: info
