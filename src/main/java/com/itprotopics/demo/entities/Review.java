@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -16,7 +17,11 @@ public class Review {
 
     private String description;
 
+    @ManyToOne
+    private Course course;
 
+    
+    
     public Review() {
     }
 
@@ -52,6 +57,14 @@ public class Review {
     @Override
     public String toString() {
         return "Review [description=" + description + ", id=" + id + ", rating=" + rating + "]";
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
 

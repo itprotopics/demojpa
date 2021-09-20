@@ -1,8 +1,11 @@
 package com.itprotopics.demo.repositories;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import com.itprotopics.demo.entities.Course;
+import com.itprotopics.demo.entities.Review;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,6 +62,43 @@ public class CourseRepository {
        
         em.refresh(course1);
         em.flush();
+
+    }
+
+    public void addReviewsForCourse() {
+
+        Course course = findById(10003L);
+
+        course.getReviews().stream().forEach(r -> logger.info(r.toString()));
+
+        Review review1 = new Review("5",  "Great Hands-on Stuff.");
+        Review review2 = new Review("5", "Hatsoff.");
+
+        review1.setCourse(course);
+        review2.setCourse(course);
+
+        course.addReview(review1);
+        course.addReview(review2);
+
+        em.persist(review1);
+        em.persist(review2);
+
+    }
+
+    public void addReviewsForCourse(Long courseId, List<Review> reviews) {
+
+        Course course = findById(courseId);
+
+        course.getReviews().stream().forEach(r -> logger.info(r.toString()));
+
+        reviews.stream().forEach(r -> {
+
+            r.setCourse(course);
+            course.addReview(r);
+            em.persist(r);
+        });
+        
+
 
     }
 

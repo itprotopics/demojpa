@@ -1,5 +1,9 @@
 package com.itprotopics.demo;
 
+import java.util.Arrays;
+import java.util.List;
+
+import com.itprotopics.demo.entities.Review;
 import com.itprotopics.demo.repositories.CourseRepository;
 import com.itprotopics.demo.repositories.StudentRepository;
 
@@ -28,8 +32,14 @@ public class DemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		studentRepository.saveStudentWithPassport();
+		//studentRepository.saveStudentWithPassport();
 
+		List<Review> reviews = Arrays.asList(
+			new Review("4",  "Great Hands-on Stuff."),
+			new Review("4", "Hatsoff.")
+		);
+
+		courseRepository.addReviewsForCourse(10003L, reviews);
 	
 	}
 
