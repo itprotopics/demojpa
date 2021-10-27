@@ -3,8 +3,11 @@ package com.itprotopics.demo.repositories;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import javax.transaction.Transactional;
+
 import com.itprotopics.demo.DemoApplication;
 import com.itprotopics.demo.entities.Course;
+import com.itprotopics.demo.entities.Student;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -69,5 +72,7 @@ public class CourseRepositoryTest {
 
         courseRepository.playWithEntityManager();
     }
+
+    
 
 }

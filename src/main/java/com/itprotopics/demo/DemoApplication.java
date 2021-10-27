@@ -1,10 +1,11 @@
 package com.itprotopics.demo;
 
-import java.util.Arrays;
-import java.util.List;
+import java.math.BigDecimal;
 
-import com.itprotopics.demo.entities.Review;
+import com.itprotopics.demo.entities.FullTimeEmployee;
+import com.itprotopics.demo.entities.PartTimeEmployee;
 import com.itprotopics.demo.repositories.CourseRepository;
+import com.itprotopics.demo.repositories.EmployeeRepository;
 import com.itprotopics.demo.repositories.StudentRepository;
 
 import org.slf4j.Logger;
@@ -25,6 +26,9 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	private StudentRepository studentRepository = null ;
 
+	@Autowired
+	private EmployeeRepository employeeRepository = null ;
+
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
@@ -34,13 +38,22 @@ public class DemoApplication implements CommandLineRunner {
 
 		//studentRepository.saveStudentWithPassport();
 
-		List<Review> reviews = Arrays.asList(
-			new Review("4",  "Great Hands-on Stuff."),
-			new Review("4", "Hatsoff.")
-		);
+		// List<Review> reviews = Arrays.asList(
+		// 	new Review("4",  "Great Hands-on Stuff."),
+		// 	new Review("4", "Hatsoff.")
+		// );
 
-		courseRepository.addReviewsForCourse(10003L, reviews);
+		// courseRepository.addReviewsForCourse(10003L, reviews);
 	
+		//studentRepository.insertStudentAndCourse();
+
+		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal("10000")));
+		employeeRepository.insert(new PartTimeEmployee("Jill", new BigDecimal("200")));
+
+		//employeeRepository.retrieveAllEmployees().stream().forEach(e -> logger.info(e.toString()));
+
+		employeeRepository.retrieveAllFullTimeEmployees().stream().forEach(e -> logger.info(e.toString()));
+		employeeRepository.retrieveAllPartTimeEmployees().stream().forEach(e -> logger.info(e.toString()));
 	}
 
 }

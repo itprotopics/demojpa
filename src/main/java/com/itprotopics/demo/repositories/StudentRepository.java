@@ -4,6 +4,7 @@ package com.itprotopics.demo.repositories;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import com.itprotopics.demo.entities.Course;
 import com.itprotopics.demo.entities.Passport;
 import com.itprotopics.demo.entities.Student;
 
@@ -57,6 +58,18 @@ public class StudentRepository {
         em.persist(student);
         
 
+    }
+
+    public void insertStudentAndCourse () {
+        Student student = new Student("Jack");
+        Course course = new Course("Curso de microservicios");
+
+        em.persist(student);
+        em.persist(course);
+
+        student.addCourse(course);
+        course.addStudent(student);
+        
     }
 
 
