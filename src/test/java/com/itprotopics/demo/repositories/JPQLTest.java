@@ -47,7 +47,23 @@ public class JPQLTest {
     }
         
             
-        
+    @Test
+    public void jpl_courses_without_students() {
+
+        TypedQuery<Course> query = em.createQuery("Select c from Course c where c.students is empty", Course.class);
+        List<Course> resultList = query.getResultList();
+        logger.info("Select jpl_courses_without_students -> {}", resultList);
+
+    }
+
+    @Test
+    public void jpl_courses_with_atleast_2students () {
+        TypedQuery<Course> query = em.createQuery("Select c from Course c where size(c.students) >= 2", Course.class);
+        List<Course> resultList = query.getResultList();
+        logger.info("Select jpl_courses_with_atleast_2students -> {}", resultList);
+
+    }
+
 
 
 }
